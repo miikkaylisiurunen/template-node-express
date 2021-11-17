@@ -7,6 +7,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.listen(process.env.PORT, () => {
-  console.log(`server is up on port ${process.env.PORT}`);
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Server is up on port ${PORT}`);
 });
