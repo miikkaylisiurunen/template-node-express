@@ -3,3 +3,6 @@
 
 # environment variables
 .env
+
+# typescript build folder
+/dist

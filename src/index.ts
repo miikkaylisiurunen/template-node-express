@@ -1,12 +1,15 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
-require('./database/mongoose');
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
+import testRouter from './routes/testRouter';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use(testRouter);
 
 const PORT = process.env.PORT || 3001;
 
