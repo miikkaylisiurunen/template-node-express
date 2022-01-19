@@ -7,11 +7,3 @@ updates:
       interval: "weekly"
       time: "09:00"
       timezone: "Europe/Helsinki"
-      
-  - package-ecosystem: "npm"
-    directory: "/"
-    target-branch: "typescript"
-    schedule:
-      interval: "weekly"
-      time: "09:00"
-      timezone: "Europe/Helsinki"
