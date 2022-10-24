@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
-import testRouter from './routes/testRouter';
+import testRouter from '@/routes/testRouter';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: process.env.CORS_ORIGIN }));
 app.use(express.json());
 
 app.use(testRouter);
