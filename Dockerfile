@@ -11,5 +11,4 @@ COPY package*.json ./
 RUN npm install --production
 COPY --from=base /app/dist ./dist
 ENV NODE_ENV=production
-EXPOSE 3001
 CMD [ "npm", "start" ]
