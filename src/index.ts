@@ -1,11 +1,11 @@
-import 'dotenv/config';
 import { makeApp } from './app';
+import { getConfig } from './config';
 
 async function main() {
+  const config = getConfig();
   const app = makeApp();
-  const PORT = process.env.PORT || 3001;
-  app.listen(PORT, () => {
-    console.log(`Server is up on port ${PORT}`);
+  app.listen(config.port, () => {
+    console.log(`Server is up on port ${config.port}`);
   });
 }
 
