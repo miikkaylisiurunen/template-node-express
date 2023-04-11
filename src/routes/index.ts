@@ -1,1 +1,1 @@
-export { makeTestRoutes } from './test';
+export { makePeopleRoutes } from './people';

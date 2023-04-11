@@ -1,2 +1,2 @@
-export { makeTestController } from './test';
-export { TestController } from './types';
+export { makePeopleController } from './people';
+export { PeopleController } from './types';

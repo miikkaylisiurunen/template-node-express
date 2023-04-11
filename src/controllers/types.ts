@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-export interface TestController {
-  hello(req: Request, res: Response, next: NextFunction): void;
+export interface PeopleController {
+  getAllPeople(req: Request, res: Response, next: NextFunction): Promise<void>;
+  addPerson(req: Request, res: Response, next: NextFunction): Promise<void>;
 }

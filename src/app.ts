@@ -1,11 +1,12 @@
 import express, { Express } from 'express';
-import { makeTestRoutes } from './routes';
+import { Queries } from './database';
+import { makePeopleRoutes } from './routes';
 
-export function makeApp(): Express {
+export function makeApp(queries: Queries): Express {
   const app = express();
   app.use(express.json());
 
-  app.use('/', makeTestRoutes());
+  app.use('/people', makePeopleRoutes(queries));
 
   return app;
 }
