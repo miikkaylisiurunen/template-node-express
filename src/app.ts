@@ -1,11 +1,11 @@
 import express, { Express } from 'express';
-import testRouter from './routes/testRouter';
+import { makeTestRoutes } from './routes';
 
 export function makeApp(): Express {
   const app = express();
   app.use(express.json());
 
-  app.use('/', testRouter);
+  app.use('/', makeTestRoutes());
 
   return app;
 }
