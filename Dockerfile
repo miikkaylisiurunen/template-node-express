@@ -1,14 +1,14 @@
-FROM node:16-alpine AS base
+FROM node:16.18-slim AS base
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM node:16-alpine
+FROM node:16.18-slim
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --production
-COPY --from=base /app/dist ./dist
 ENV NODE_ENV=production
+RUN npm ci --omit=dev
+COPY --from=base /app/dist ./dist
 CMD [ "npm", "start" ]
