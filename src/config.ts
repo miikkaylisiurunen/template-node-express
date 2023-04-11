@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 export const Config = z.object({
   port: z.number().positive(),
+  databaseUrl: z.string(),
 });
 export type Config = z.infer<typeof Config>;
 
@@ -15,5 +16,6 @@ export const getConfig = (prefix?: string): Config => {
   const port = readFromEnv('PORT', prefix);
   return Config.parse({
     port: port ? parseInt(port, 10) : undefined,
+    databaseUrl: readFromEnv('DATABASE_URL', prefix),
   });
 };
