@@ -1,14 +1,14 @@
-import express from 'express';
 import 'dotenv/config';
-import testRouter from './routes/testRouter';
+import { makeApp } from './app';
 
-const app = express();
-app.use(express.json());
+async function main() {
+  const app = makeApp();
+  const PORT = process.env.PORT || 3001;
+  app.listen(PORT, () => {
+    console.log(`Server is up on port ${PORT}`);
+  });
+}
 
-app.use(testRouter);
-
-const PORT = process.env.PORT || 3001;
-
-app.listen(PORT, () => {
-  console.log(`Server is up on port ${PORT}`);
+main().catch((error) => {
+  console.log(error);
 });
