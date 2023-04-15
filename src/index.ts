@@ -1,17 +1,17 @@
-import express from 'express';
-import cors from 'cors';
-import 'dotenv/config';
-import testRouter from '@/routes/testRouter';
+import { makeApp } from './app';
+import { getConfig } from './config';
+import { applyMigrations, makeQueries } from './database';
 
-const app = express();
+async function main() {
+  const config = getConfig();
+  await applyMigrations(config.databaseUrl, 'up');
+  const queries = makeQueries(config.databaseUrl);
+  const app = makeApp(queries);
+  app.listen(config.port, () => {
+    console.log(`Server is up on port ${config.port}`);
+  });
+}
 
-app.use(cors({ origin: process.env.CORS_ORIGIN }));
-app.use(express.json());
-
-app.use(testRouter);
-
-const PORT = process.env.PORT || 3001;
-
-app.listen(PORT, () => {
-  console.log(`Server is up on port ${PORT}`);
+main().catch((error) => {
+  console.log(error);
 });
