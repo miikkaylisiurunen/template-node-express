@@ -27,7 +27,7 @@ export const makeMiddleware = (): Middleware => {
         // log unexpected errors
         console.log(
           `ERROR: ${new Date().toISOString()} - ${req.method} ${req.originalUrl} - `,
-          err
+          err,
         );
         return res.status(500).send({ status: 500, message: 'Something went wrong' });
       }

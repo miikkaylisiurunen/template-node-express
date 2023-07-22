@@ -6,7 +6,7 @@ import { HttpError } from '../errors';
 async function query<Result extends Record<string, any> = any, Args extends any[] = any[]>(
   pool: Pool,
   query: string,
-  args?: Args
+  args?: Args,
 ): Promise<QueryResult<Result>> {
   return await pool.query(query, args);
 }
@@ -20,7 +20,7 @@ export const makeQueries = (databaseUrl: string): Queries => {
         `
         SELECT name, age
         FROM people
-        `
+        `,
       );
       return rows;
     },
@@ -32,7 +32,7 @@ export const makeQueries = (databaseUrl: string): Queries => {
         VALUES ($1, $2)
         RETURNING name, age
         `,
-        [name, age]
+        [name, age],
       );
       if (rowCount !== 1) {
         throw new HttpError(500, 'Something went wrong');
