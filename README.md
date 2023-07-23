@@ -3,7 +3,7 @@
 
 > A Node.js API template with Express, TypeScript and PostgreSQL
 
-[![Test](https://github.com/miikkaylisiurunen/template-node-express/actions/workflows/test-api.yml/badge.svg)](https://github.com/miikkaylisiurunen/template-node-express/actions/workflows/test-api.yml)
+[![CI](https://github.com/miikkaylisiurunen/template-node-express/actions/workflows/ci.yml/badge.svg)](https://github.com/miikkaylisiurunen/template-node-express/actions/workflows/ci.yml)
 
 <!-- omit from toc -->
 ## Table of contents
@@ -20,8 +20,9 @@
   - [Error handler middleware](#error-handler-middleware)
   - [Handling errors in asynchronous middleware](#handling-errors-in-asynchronous-middleware)
 - [Testing](#testing)
-  - [Running Tests](#running-tests)
-  - [Continuous Integration](#continuous-integration)
+  - [Running tests](#running-tests)
+  - [Automated tests](#automated-tests)
+- [Continuous integration](#continuous-integration)
 
 ## Features
 
@@ -95,7 +96,7 @@ POST /people    # add a new person with required body properties: "name" and "ag
 
 ```
 .
-├── .github          # workflow to run tests and dependabot config to keep npm packages up to date
+├── .github          # CI workflows and dependabot config to keep npm packages up to date
 ├── migrations       # database migration scripts
 └── src
     ├── controllers  # route controllers
@@ -170,7 +171,7 @@ app.post('/route', (req, res) => {
 
 This template comes with tests powered by [Jest](https://jestjs.io) and [Supertest](https://github.com/ladjs/supertest) to ensure the quality and stability of your application through unit and integration testing.
 
-### Running Tests
+### Running tests
 
 You can manually run tests with the following command:
 
@@ -180,6 +181,17 @@ npm test
 
 This command will run all tests in the `src` directory and output the results to the console.
 
-### Continuous Integration
+### Automated tests
 
-A GitHub Actions workflow is set up to automatically run tests every time a push is made to the `main` branch, or when a pull request is opened, reopened, or synchronized. This ensures that your code is always tested before being merged into the main branch, preventing issues and bugs from making their way into production.
+A GitHub Actions workflow is included to automatically run tests. Refer to the [Continuous integration](#continuous-integration) section for more information.
+
+## Continuous integration
+
+This template comes with pre-configured GitHub Actions workflows to automate continuous integration (CI) and ensure that your code is always tested before being merged into the main branch. The workflows run automatically on every push to the `main` branch, or when a pull request is opened, reopened, or synchronized.
+
+The workflows included are:
+
+- `ci.yml` - Runs tests and builds the project, preventing issues and bugs from making their way into production.
+- `lint.yml` - Runs ESLint to find linting issues, ensuring that your code is always in compliance with your ESLint rules, which can improve code quality and consistency.
+
+Additionally, a `dependabot.yml` configuration is included and run automatically on a weekly basis. It detects outdated npm packages and creates pull requests to update them, ensuring that your npm packages are always up to date, which can improve security and prevent bugs caused by outdated packages.
