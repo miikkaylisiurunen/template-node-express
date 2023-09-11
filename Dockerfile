@@ -11,4 +11,5 @@ COPY package*.json ./
 ENV NODE_ENV=production
 RUN npm ci --omit=dev
 COPY --from=base /app/dist ./dist
-CMD [ "npm", "start" ]
+COPY --from=base /app/migrations ./migrations
+CMD ["npm", "start"]
