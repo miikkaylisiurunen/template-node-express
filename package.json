@@ -29,7 +29,7 @@
     "@types/pg": "^8.15.4",
     "@types/supertest": "^6.0.3",
     "eslint": "^9.28.0",
-    "eslint-config-prettier": "^10.1.5",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.4.1",
     "prettier": "^3.5.3",
     "supertest": "^7.1.1",
