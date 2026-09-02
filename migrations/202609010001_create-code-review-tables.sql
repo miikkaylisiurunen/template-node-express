@@ -1,0 +1,21 @@
+-- Up Migration
+
+CREATE TABLE events (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(255) NOT NULL,
+  date DATE NOT NULL,
+  capacity INT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
+);
+
+CREATE TABLE registrations (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  event_id INT NOT NULL REFERENCES events(id) ON DELETE CASCADE,
+  user_id INT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
+);
+
+-- Down Migration
+
+DROP TABLE registrations;
+DROP TABLE events;
