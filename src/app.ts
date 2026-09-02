@@ -3,10 +3,12 @@ import { Queries } from './database/queries';
 import { Middleware } from './middleware';
 import { makePeopleRoutes } from './routes/people';
 import { makeHealthRoutes } from './routes/health';
-
+import { makeEventsRoutes } from './routes/events';
+import type { Pool } from 'pg';
 export interface AppContext {
   queries: Queries;
   middleware: Middleware;
+  db?: Pool;
 }
 
 export function makeApp(ctx: AppContext): Express {
@@ -16,6 +18,7 @@ export function makeApp(ctx: AppContext): Express {
 
   app.use('/health', makeHealthRoutes(ctx));
   app.use('/people', makePeopleRoutes(ctx));
+  app.use('/events', makeEventsRoutes(ctx));
 
   app.use(ctx.middleware.routeNotFound);
   app.use(ctx.middleware.errorHandler);
